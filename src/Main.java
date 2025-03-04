@@ -4,43 +4,40 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        boolean toContinue = true;
+        System.out.println("Veuillez entrer votre nom complet");
+        String name = scanner.nextLine();
 
-        while (toContinue) {
-            System.out.println("Veuillez entrer le montant en XOF que vous souhaitez convertir");
+        double maths = 0.0;
+        double physics = 0.0;
+        double french = 0.0;
 
-            double amount = scanner.nextDouble();
-            scanner.nextLine();
-
-            System.out.println("Donc vous souhaitez convertir " + amount + " XOF");
-            System.out.println("Veuillez entrer la devise d'arrivée.");
-            System.out.println("    Valeurs valides : EUR, USD");
-
-            String currency = scanner.nextLine();
-
-            double amountConverted;
-
-            switch (currency) {
-                case "EUR":
-                    amountConverted = amount / 655;
-                    System.out.println("Le montant converti est : €" + amountConverted);
+        for (int i = 0; i < 3; i++) {
+            switch (i) {
+                case 0:
+                    System.out.println("Veuillez entrer votre note de mathématiques");
+                    maths = scanner.nextDouble();
                     break;
-                case "USD":
-                    amountConverted = amount / 450;
-                    System.out.println("Le montant converti est : " + amountConverted + "$");
+                case 1:
+                    System.out.println("Veuillez entrer votre note de physiques");
+                    physics = scanner.nextDouble();
                     break;
-                default:
-                    System.out.println("Vous avez entré une devise erronée");
+                case 2:
+                    System.out.println("Veuillez entrer votre note de français");
+                    french = scanner.nextDouble();
                     break;
             }
+        }
 
+        double mean = (
+                (maths * 3) + (physics * 3) + (french * 2)
+        ) / (3 + 3 + 2);
 
-            System.out.println("Voulez vous continuer ? [y/n]");
-            String userWantToContinue = scanner.nextLine();
+        System.out.println("M/Mme " + name + ", vous avez obtenu " + mean + " de moyenne générale");
 
-            if (userWantToContinue.equals("n")) {
-                toContinue = false;
-            }
+        if (mean >= 12.0) {
+            System.out.println("Félicitations, vous passez en classe supérieure");
+        } else {
+            System.out.println("Désolé, la prochaine année sera la bonne");
         }
 
         scanner.close();
